@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+   
+    
+    <link rel="stylesheet" href="../css/product-profile.css">
+    <link rel="stylesheet" href="../css/web.css">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+
+    <script src="../js/confirmDialog.js"></script>
+
+    <script>
+        function submitForm() {
+            const dialog = new ConfirmDialog({
+                lang: 'english'
+            });
+            // Use the ConfirmDialog library to display a confirmation dialog
+            dialog.show('You sure to save changes?').then((result) => {
+                console.log(result.ok);
+                document.querySelector("#f1").submit();
+
+            });
+        }
+        function DeleteFrom() {
+            const dialog = new ConfirmDialog({
+                lang: 'english'
+            });
+            // Use the ConfirmDialog library to display a confirmation dialog
+            dialog.show('You sure to Dalete this Drawing?').then((result) => {
+                console.log(result.ok);
+
+                document.querySelector('#f1').action = `http://127.0.0.1:4000/delate/<%= did._id %>`;
+                document.querySelector("#f1").submit();
+                // document.querySelector(".form-container").submit();
+
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <header class="header">
+        <a href="/" class="logo"  id = "logo">logo</a>
+        
+
+        <nav class="navigation">
+            
+            <a href="/">Home</a>
+            <a href="/manu">Manu</a>
+            <%if (!loggedIn){%>
+                
+                <a href="/login_or_register" class="btnlogin-popup">Login</a>
+            <%}%>
+            <%if (loggedIn){%>
+                
+                    <!-- <a href="/profile"> <%= UserData.username%> </a>
+                    <form action="/logout" class="logout" method="post">
+                    <button class="btnlogout btnlogin-popup "  type="submit">logout</button>
+                    </form> -->
+                    <a href="/create">create</a>
+                    <a href="/profile/<%= UserData._id%>" > <%= UserData.username%> </a>
+                    <a href="/logout"  class="btnlogin-popup">Logout</a>
+
+            <%}%>
+        </nav>
+    </header>
+
+
+<div class="main-product">
+    <div class="main_containers">
+        <form class="form-containe" id="f1" action="/edit/<%= did._id %>" method="post">
+            <div >
+                <img src="<%=did.filePath %>"  alt="..." >
+                <!-- <p class="titleimg"><%= did.title %></p> -->
+            </div>
+            <div class="upload_detail_container">
+                <h2 id=""> Edit Detail picture</h2>
+                <div class="box_input">
+                    <label>Name</label>
+                    <span class="icon">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </span>
+                    <input type="title"  name = "title" value="<%= did.title %>">
+                    
+                </div>
+                <div class="box_input">
+                    <label>description</label>
+                    <span class="icon">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </span>
+                    <input type="description" name="description"  value="<%= did.description %>" >
+                 
+                </div>
+                <div class="box_input">
+                    <label>price</label>
+                    <span class="icon">
+                        <ion-icon name="mail-outline"></ion-icon>
+                    </span>
+                    <input type="price" name="price"  value="<%= did.price %>" >
+                   
+                </div>
+                <div class="type_input">
+                    <span class="icon">
+                        <ion-icon name="mail-outline" ></ion-icon>
+                    </span>
+                </div>
+                <div class="box_input">
+                    <label>category</label>
+                    <input type="category" name="category"  value="<%= did.category %>">
+                    
+                </div>
+              
+                <button type="button" onclick="submitForm()" id="btn-submit">submit</button>
+                <button type="button" onclick="DeleteFrom()" id="btn-delete">Delete</button>
+                
+                
+            </div>
+
+            
+        </form>
+    </div>
+   
+     
+
+</div>
+
+   
+</body>
+</html>
