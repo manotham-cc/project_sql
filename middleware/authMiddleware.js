@@ -1,4 +1,3 @@
-const User = require('../models/User')
 
 module.exports = async (req,res,next)=>{
     const a = req.session.userId
@@ -7,10 +6,11 @@ dbConnection.query(query,[a], (error, results, fields) => {
   if (error) throw error;
   console.log(results);
   if (!results){
-    next()
+    return res.redirect('/login_or_register')
     
   }
-  return res.redirect('/login_or_register')
+  next()
+  
 
   // Process results here
 //   console.log(results);

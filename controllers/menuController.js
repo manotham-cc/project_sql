@@ -33,7 +33,7 @@ module.exports = async (req, res) => {
     for (let post of posts) {
       let postComments;
       try {
-        postComments = await queryMySQL('SELECT * FROM comment WHERE DrawingID = ?', [post._id]);
+        postComments = await queryMySQL('SELECT * FROM comment WHERE DrawingID = ? ORDER BY CommentDate DESC', [post._id]);
       } catch (error) {
         console.error(error);
         return res.status(500).send('Internal Server Error');
