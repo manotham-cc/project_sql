@@ -15,7 +15,8 @@
 
 <body>
     <header class="header">
-        <a href="/" class="logo">Logo</a>
+        <a href="/" class="logo" >
+            <img src="../pic/Logo.png" alt=""></a>
         
    
 
@@ -23,8 +24,6 @@
             
             <a href="/">Home</a>
             <a href="/manu">Manu</a>
-            
-            <a href="/commu">commu</a>
             <%if (!loggedIn){%>
                 
                 <a href="/login_or_register" class="btnlogin-popup">Login</a>
@@ -36,7 +35,7 @@
                     <button class="btnlogout btnlogin-popup "  type="submit">logout</button>
                     </form> -->
                     <a href="/create">create</a>
-                    <a href="/profile/<%= UserData.UserID%>" > <%= UserData.Username%><%= UserData.UserID%> </a>
+                    <a href="/profile/<%= UserData.UserID%>" > <%= UserData.Username%></a>
                     <a href="/logout"  class="btnlogin-popup">Logout</a>
 
             <%}%>
@@ -44,10 +43,7 @@
         
    
     </header>
-         
- 
-   
-</header>
+
 
 <button class="button">
     <a href="shop.html">
@@ -106,16 +102,32 @@
             </div>
         </div>
     </div>
+    <style>
+        .btnBuy{
+            position: absolute;
+            padding: 20px 40px 20px 40px;
+            bottom: 10px;
+            left: 20%;
+            background-color: rgba(255, 255, 255, 0);
+            border: 2px solid rgb(215, 244, 51);
+            color: rgb(215, 244, 51);
+            border-radius: 0.5rem;
+        }
+    </style>
+    <div class="btnBuy">
+        <form action="" method="post" id="buybtn" style="display: none;"></form>
+         Buy
+    </div>
 </div>
 <div class="products">
     <% if(Post != null && Post.length > 0) { %>
         <!-- <%- JSON.stringify(Post )%>; -->
-        <script>
+        <script  async ='text/javascript'>
 
-            var posts = <%- JSON.stringify(Post) %> ;
-            var AllUserDate = <%- JSON.stringify(allUserData) %>;
-            var Comments = <%- JSON.stringify(comments) %>;
-            // var login = loggedIn;
+            var posts = <%-  JSON.stringify(Post) %> ;
+            console.log(posts);
+            var AllUserDate = <%- JSON.stringify(allUserData) %>
+            var Comments = <%- JSON.stringify(comments) %>
             
         </script>
         <% for(let i = 0; i < Post.length; i++) { %>
@@ -133,6 +145,6 @@
    
 </body>
 
-<script src="js/manu.js"></script>
+<script  async src="js/manu.js"></script>
 <!-- <script src="js/comment.js"></script> -->
 </html>

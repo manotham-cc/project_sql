@@ -10,7 +10,8 @@
 </head>
 <body>
     <header class="header">
-        <a href="/" class="logo">Logo</a>
+        <a href="/" class="logo" >
+            <img src="../pic/Logo.png" alt=""></a>
         
    
 
@@ -18,18 +19,18 @@
             
             <a href="/">Home</a>
             <a href="/manu">Manu</a>
-            <a href="/create">Create</a>
-            <a href="#">commu</a>
             <%if (!loggedIn){%>
+                
                 <a href="/login_or_register" class="btnlogin-popup">Login</a>
             <%}%>
             <%if (loggedIn){%>
                 
-                    <!-- <a href="/profile"> <%= UserData.username%> </a>
+                    <!-- <a href="/profile"> <%= UserData.Username%> </a>
                     <form action="/logout" class="logout" method="post">
                     <button class="btnlogout btnlogin-popup "  type="submit">logout</button>
                     </form> -->
-                    <a href="/profile/<%= UserData._id%>" > <%= UserData.username%> </a>
+                    <a href="/create">create</a>
+                    <a href="/profile/<%= UserData.UserID%>" > <%= UserData.Username%></a>
                     <a href="/logout"  class="btnlogin-popup">Logout</a>
 
             <%}%>
@@ -37,6 +38,7 @@
         
    
     </header>
+
     <div class="main_containers">
         <form class="form-container" action="/upload" method="post" enctype='multipart/form-data'>
             <div class="upload-files-container">
@@ -87,10 +89,10 @@
                         <ion-icon name="mail-outline"></ion-icon>
                     </span>
                 </div> -->
-                <div class="box_input">
+                <!-- <div class="box_input">
                     <input type="type" name="type">
                     <label>type</label>
-                </div>
+                </div> -->
                 <!-- <button type="submit" class="submit_detail">Submit</button> -->
             </div>
         </form>

@@ -15,7 +15,8 @@
 </head>
 <body>
     <header class="header">
-        <a href="/" class="logo">Logo</a>
+        <a href="/" class="logo" >
+            <img src="../pic/Logo.png" alt=""></a>
         
    
 
@@ -36,7 +37,7 @@
                     <button class="btnlogout btnlogin-popup "  type="submit">logout</button>
                     </form> -->
                     <a href="/create">create</a>
-                    <a href="/profile/<%= UserData.UserID%>" > <%= UserData.Username%><%= UserData.UserID%> </a>
+                    <a href="/profile/<%= UserData.UserID%>" > <%= UserData.Username%></a>
                     <a href="/logout"  class="btnlogin-popup">Logout</a>
 
             <%}%>
@@ -78,9 +79,8 @@
 
 <div class="profile-user">
     <img src="../pic/user.avif" class="profile-picture">
-    <p class="user-name">John</p>
+    <p class="user-name"> <%= UserData.Username %> </p>
     <p class="detail-profile">
-        i dreawing 1 pic in 1 hours
     </p>
 </div>
 

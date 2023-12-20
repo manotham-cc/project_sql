@@ -1,6 +1,4 @@
-const { body } = require("express-validator");
 
-//const Comment = require('../models/Comment')
 module.exports = async (req, res) => {
     const commentText = req.body.commentText;
     const user = req.session.userId;// Change to your actual user ID source

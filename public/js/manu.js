@@ -1,10 +1,12 @@
 // Your existing JavaScript code
 
+
+
 function renderComment(comment) {
     let html = `
-    <div class="comment__container opened" id="${comment._id}">
+    <div class="comment__container opened" id="${comment.CommentID}">
       <div class="comment__card">
-        <h3 class="comment__title"> >>>${findname(comment.UserID )} </h3>
+        <h3 class="comment__title"> >>>${findname(comment.UserID)||comment.author}</h3>
         <p>${comment.CommentText}</p>
         <div class="comment__card-footer">
         <div class="reply" ></div>
@@ -25,6 +27,7 @@ const largeImage = document.querySelector('.large-image');
 const imageIndex = document.querySelector('.index');
 const commentForm = document.querySelector('#fromId');
 const submitButton = document.querySelector('.btnform');
+const Btnbut = document.querySelector('.buybtn')
 let index = 0; // will track our current image;
 
 
@@ -40,20 +43,13 @@ const updateImage = (i) => {
     const clickedImage = images[i];
     const imagePath = clickedImage.src;
     const imageType = getImageType(imagePath);
-    let user = 0
-    // console.log();
-    // log(posts)
-    let authorName =  findname(posts[i].UserID);
-    console.log(authorName);
-    //console.log(UserData.UserID);
+    let authorName =  findname(posts[i].UserID );
     largeImage.src = imagePath;
     // console.log(commentForm.action = `/comment/${posts[i]._id}`);
-    // try {    document.querySelector('#fromId').action = `http://127.0.0.1:4000/comment/${posts[i]._id}?author=${authorName}&uid=${UserData.UserID}`;
-    // } catch (error) {
-        
-    // }
+   
 
-    document.querySelector('#fromId').action = `http://127.0.0.1:4000/comment/${posts[i]._id}?author=${authorName}`;
+    document.querySelector('#fromId').action = `/comment/${posts[i]._id}?author=${authorName}`;
+    document.querySelector('#buybtn').action = `/buy/${posts[i]._id}`;
         // Add an event listener to the button
     console.log(commentForm.action);
     let commentsArray = Comments[posts[i]._id].comment; // Assuming Comments is a valid object
@@ -67,6 +63,10 @@ const updateImage = (i) => {
     imageIndex.innerHTML = authorName;
     index = i;
 };
+document.querySelector('.btnBuy').addEventListener('click', function () {
+    // Trigger the form submission
+    document.querySelector('#buybtn').submit();
+});
 
 submitButton.addEventListener('click', function () {
     // Trigger the form submission
@@ -92,7 +92,10 @@ closeBtn.addEventListener('click', () => {
 
 let findname = (uid) =>{
     for( let user of AllUserDate){
-        if (user._id == uid) {
+        // log(user.UserID)
+        // console.log(user.UserID);
+        console.log(uid);
+        if (user.UserID  == uid) {
             return user.Username;
         }
     }
@@ -111,4 +114,5 @@ let findname = (uid) =>{
 //         updateImage(index + 1);
 //     }
 // });
+
 

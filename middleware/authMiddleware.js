@@ -5,11 +5,12 @@ module.exports = async (req,res,next)=>{
     const query = 'SELECT * FROM user WHERE UserID = ?';
 dbConnection.query(query,[a], (error, results, fields) => {
   if (error) throw error;
+  console.log(results);
   if (!results){
-    return res.redirect('/')
-
+    next()
+    
   }
-  next()
+  return res.redirect('/login_or_register')
 
   // Process results here
 //   console.log(results);

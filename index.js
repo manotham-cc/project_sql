@@ -12,7 +12,7 @@ const bcrypt = require('bcrypt');
 mongoose.connect("mongodb+srv://mayoi:Puchit4826@cluster0.pyaz4rl.mongodb.net/?retryWrites=true&w=majority",{
     useNewUrlParser: true
 })
-const { validationResult } = require('express-validator');
+// const { validationResult } = require('express-validator');
 
 const dbConfig = {
     host: 'localhost',
@@ -102,6 +102,8 @@ app.use(flash())
 app.use(expressSession({
     secret: "node secret"
 }))
+
+
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId
     console.log(loggedIn);
@@ -130,4 +132,4 @@ app.post('/delate/:id',authMiddleware,deleateController)
 app.listen(4000, () => {
     console.log("App listening on prot 4000");
     
-})
+})  

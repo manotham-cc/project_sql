@@ -46,5 +46,5 @@ module.exports = async (req, res) => {
     console.log("commet");
     console.log(comments[10]);
 
-    res.render('manu', {UserData : UserData[0], Post: posts, allUserData, comments });
+    res.render('manu', {UserData : UserData[0], Post:posts, allUserData, comments });
   };
